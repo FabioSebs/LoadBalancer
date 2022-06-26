@@ -11,6 +11,7 @@ import (
 
 	"github.com/TwiN/go-color"
 	"github.com/go-co-op/gocron"
+	"github.com/gorilla/mux"
 )
 
 type Server struct {
@@ -21,14 +22,12 @@ type Server struct {
 }
 
 type MasterServers struct {
-	List   []*Server
-	Health bool
-	Name   string
+	List []*Server
 }
 
 var (
 	index     int32
-	portRange = "http://127.0.0.1:808"
+	portRange = "http://servers:808"
 )
 
 func (server *Server) testServer() bool {
@@ -46,22 +45,40 @@ func (server *Server) testServer() bool {
 	return server.Health
 }
 
-func MakeLoadBalaner(servers int) {
+func MakeLoadBalancer(servers int) {
 	master := MasterServers{}
+
+	r := mux.NewRouter()
+
+	s := http.Server{
+		Addr:        ":8090",
+		Handler:     r,
+		ReadTimeout: 3 * time.Second,
+	}
+
 	index = 0
+
 	for i := 0; i < servers; i++ {
 		master.List = append(master.List, createServer())
 	}
 	index = 0
-	http.HandleFunc("/", makeRequest(&master))
+
+	r.HandleFunc("/", makeRequest(&master))
 	healthCheck(&master)
-	log.Fatal(http.ListenAndServe(":8090", nil))
+	log.Fatal(s.ListenAndServe())
 }
 
 func makeRequest(servers *MasterServers) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		i := int(index) % len(servers.List)
 		revproxy := servers.List[i]
+		for !revproxy.testServer() {
+			i++
+			revproxy = servers.List[i]
+		}
+		if i != int(index)%len(servers.List) {
+			index = int32(i)
+		}
 		index++
 		revproxy.ReverseProxy.ServeHTTP(w, r)
 	}
@@ -94,6 +111,9 @@ func healthCheck(master *MasterServers) {
 		if err != nil {
 			log.Fatal(err)
 		}
+
 	}
 	scheduler.StartAsync()
 }
+
+

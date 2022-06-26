@@ -1,7 +1,9 @@
 package main
 
-import "github.com/FabioSebs/LoadBalancer/loadbalancer"
+import (
+	"github.com/FabioSebs/LoadBalancer/loadbalancer"
+)
 
 func main() {
-	loadbalancer.MakeLoadBalaner(5)
+	loadbalancer.MakeLoadBalancer(5)
 }

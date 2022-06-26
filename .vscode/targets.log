@@ -8,12 +8,10 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun 18 12:01:49 2022
+# Make data base, printed on Thu Jun 23 02:10:04 2022
 
 # Variables
 
-# environment
-FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
 # environment
 SYSTEMDRIVE = C:
 # environment
@@ -25,7 +23,7 @@ TMPDIR = C:\Users\espin\AppData\Local\Temp
 # environment
 LOCALAPPDATA = C:\Users\espin\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-949e95f7-80bd-466e-8066-9292a94b665a-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-9e34ff6d-6efb-4bb6-b732-4913d78e7aad-sock
 # environment
 VSCODE_CWD = C:\Users\espin\Desktop\Computer Science\LoadBalancer
 # environment
@@ -47,11 +45,9 @@ GOPATH = C:\Users\espin\go
 # environment
 ACLOCAL_PATH = C:\Program Files\Git\mingw64\share\aclocal;C:\Program Files\Git\usr\share\aclocal
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_11256_NIXSRISQJZEPZIRN
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_13572_XXMECSHPQUQIPNEI
 # environment
 ORIGINAL_TEMP = C:/Users/espin/AppData/Local/Temp
-# environment
-FPS_BROWSER_USER_PROFILE_STRING = Default
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
@@ -63,7 +59,7 @@ PWD = C:/Users/espin/Desktop/Computer Science/LoadBalancer
 # environment
 HOSTNAME = LAPTOP-6VSS0VBA
 # environment
-OLDPWD = C:/Users/espin/Desktop/Computer Science
+OLDPWD = C:/Users/espin
 # automatic
 ^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
 # environment
@@ -117,7 +113,7 @@ MAKEFILE_LIST := makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 11256
+VSCODE_PID = 13572
 # automatic
 ?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
 # environment
@@ -271,11 +267,12 @@ ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 PROCESSOR_REVISION = 6001
 # environment
-TERM_PROGRAM_VERSION = 3.5.2
+TE 
+RM_PROGRAM_VERSION = 3.5.2
 # environment
 PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
 # variable set hash-table stats:
-# Load=131/1024=13%, Rehash=0, Collisions=13/158=8%
+# Load=129/1024=13%, Rehash=0, Collisions=12/156=8%
 
 # Pattern-specific Variable Values
 
@@ -283,9 +280,9 @@ PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
 
 # Directories
 
-# . (key c:/Users/espin/Desktop/Computer Science/LoadBalancer, mtime 1655488107): 15 files, no impossibilities.
+# . (key c:/Users/espin/Desktop/Computer Science/LoadBalancer, mtime 1655631600): 14 files, no impossibilities.
 
-# 15 files, no impossibilities in 1 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -307,8 +304,7 @@ servers:
 #  recipe to execute (from 'makefile', line 5):
 	./servers.exe
 
-# Not a ta 
-rget:
+# Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -336,12 +332,12 @@ makefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 20 / storage = 171 B / avg = 8 B
-# current buf: size = 8174 B / used = 171 B / count = 20 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 19 / storage = 153 B / avg = 8 B
+# current buf: size = 8174 B / used = 153 B / count = 19 / avg = 8 B
 
-# strcache performance: lookups = 26 / hit rate = 23%
+# strcache performance: lookups = 25 / hit rate = 24%
 # hash-table stats:
-# Load=20/8192=0%, Rehash=0, Collisions=0/26=0%
-# Finished Make data base on Sat Jun 18 12:01:49 2022
+# Load=19/8192=0%, Rehash=0, Collisions=0/25=0%
+# Finished Make data base on Thu Jun 23 02:10:04 2022
 
  

@@ -1,9 +1,9 @@
 package server
 
 import (
+	"context"
 	"fmt"
 	"html/template"
-	"log"
 	"net/http"
 	"strconv"
 	"sync"
@@ -40,7 +40,7 @@ func (s *ServerSlice) Pop() int {
 func RunManyServers(servers int) {
 	ss := ServerSlice{}
 	ss.Populate(servers)
-	wg := sync.WaitGroup{}
+	var wg sync.WaitGroup
 
 	wg.Add(servers)
 	for i := 0; i < servers; i++ {
@@ -52,11 +52,14 @@ func RunManyServers(servers int) {
 
 func makeServer(ss *ServerSlice, wg sync.WaitGroup) {
 	port := ss.Pop()
+	defer wg.Done()
 	r := mux.NewRouter()
-	r.HandleFunc("/", returnSomething(port))
+	s := http.Server{Addr: fmt.Sprintf(":808%d", port), Handler: r}
+	r.HandleFunc("/", returnSomething(port)) 
+	r.HandleFunc("/shutdown", shutDown(&s))
 	fmt.Println("Running on server 808" + strconv.Itoa(port))
-	wg.Done()
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":808%d", port), r))
+
+	s.ListenAndServe()
 }
 
 func returnSomething(serverNo int) func(w http.ResponseWriter, r *http.Request) {
@@ -70,5 +73,13 @@ func returnSomething(serverNo int) func(w http.ResponseWriter, r *http.Request) 
 			Number: serverNo + 1,
 		}
 		templates.Lookup("doc").Execute(w, context)
+	}
+}
+
+func shutDown(server *http.Server) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(400)
+		w.Write([]byte("400 - Server Shut Down!"))
+		server.Shutdown(context.Background())
 	}
 }
